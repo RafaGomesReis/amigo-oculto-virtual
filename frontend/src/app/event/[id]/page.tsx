@@ -1,4 +1,4 @@
-import * as api from "../../../api/site";
+import * as api from "../../../fetch/site";
 import { Search } from "../../../components/site/Search";
 import { redirect, useRouter } from "next/navigation";
 

@@ -3,7 +3,7 @@
 import { SearchResult } from "../../types/SearchResult";
 import { useState } from "react";
 import { SearchForm } from "./SearchForm";
-import * as api from "../../api/site";
+import * as api from "../../fetch/site";
 import { SearchReveal } from "./SearchReveal";
 
 type Props = {
