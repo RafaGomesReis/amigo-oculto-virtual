@@ -13,8 +13,8 @@ const Page = async ({ params }: Props) => {
     return (
         <main className="text-center mx-auto max-w-lg p-5">
             <header>
-                <h1 className="text-1xl text-blue-600 font-bold">amigo secreto</h1>
-                <h2 className="text-3xl text-blue-700 font-bold mt-5 mb-2">{eventItem.title}</h2>
+                <h1 className="text-1xl text-gray-800 font-bold">amigo secreto</h1>
+                <h2 className="text-3xl text-blue-700 font-bold mt-5 mb-2 [-webkit-text-stroke:1px_black]">{eventItem.title}</h2>
                 <p className="text-sm mb-5 bg-green-500 rounded-md p-2">{eventItem.description}</p>
             </header>
 
