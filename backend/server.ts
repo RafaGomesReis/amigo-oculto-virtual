@@ -176,6 +176,15 @@ app.get('/rafael', (req: Request, res: Response) => {
   } );
 });
 
+app.get('/admin', (req: Request, res: Response) => {
+  res.json({
+    "/login": { 
+      "password": "1234"  
+    }
+  });
+});
+
+
 // Iniciar o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);

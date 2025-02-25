@@ -13,14 +13,13 @@ const Page = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [ warning, setWarning] = useState("");
-    
+    console.log(password);
     const handleLoginButton = async() => { 
         if (password) {
             setWarning("");
             setLoading(true);
             const token = await login(password);
             setLoading(false);
-
             if (!token) {
                 setWarning("acesso negado");
             } else {
