@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Event } from '../../types/Event';
-
+import { EventItem, EventItemNotFound, EventItemPlaceholder } from './events/EventItemHelpers';
 
 export const AdminPage = () => {
     const [events, setEvents] = useState<Event[]>([]);
@@ -36,8 +36,13 @@ export const AdminPage = () => {
                 {!loading && events.length > 0 && events.map(item =>(
                     <div key={item.id}>{item.title}</div>
                 ))}
-                {!loading && events.length === 0 && <div>Nenhum evento encontrado</div>}
-                {loading && <div>Carregando...</div>}
+                {!loading && events.length === 0 && <EventItemNotFound />}
+                {loading && 
+                <>
+                    <EventItemPlaceholder />
+                    <EventItemPlaceholder />
+                    <EventItemPlaceholder />
+                </>}
             </div>
         </div>  
     )
