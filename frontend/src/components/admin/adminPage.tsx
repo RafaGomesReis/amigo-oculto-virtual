@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Event } from '../../types/Event';
-import { EventItem, EventItemNotFound, EventItemPlaceholder } from './events/EventItemHelpers';
-
+import { EventItem, EventItemNotFound, EventItemPlaceholder } from './events/EventItem';
+import { ItemButton } from './itemButton';
+import { FaPlus } from 'react-icons/fa';
 export const AdminPage = () => {
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
@@ -30,11 +31,19 @@ export const AdminPage = () => {
         <div>
             <div className="flex p-3 items-center">
                 <h1 className="text-2xl flex-1 font-bold">Eventos</h1>
-                <div>...</div>
+                <ItemButton 
+                    IconElement={FaPlus}
+                    onClick={() => {}}
+                />
             </div>
             <div className="my-3"> 
                 {!loading && events.length > 0 && events.map(item =>(
-                    <div key={item.id}>{item.title}</div>
+                    <EventItem
+                        key={item.id}
+                        item={item}
+                        refreshAction={loadingEvents}
+                        openModal={() => {}}
+                    />
                 ))}
                 {!loading && events.length === 0 && <EventItemNotFound />}
                 {loading && 
