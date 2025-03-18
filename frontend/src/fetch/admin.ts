@@ -1,5 +1,5 @@
 import { getCookie } from "cookies-next";
-import { req } from "c:/Users/Jonathan/Rafael/projetos/amgs-frontend/frontend/src/fetch/axios"
+import { req } from "./axios"
 
 export const login = async (password: string) => {
     try {
@@ -15,4 +15,12 @@ export const getEvents = async () => {
         headers: { 'Authorization': `Token ${token}` }
     })
     return json.data.events as Event[] ?? [];
+}
+
+export const deleteEvent = async (id: number) => {
+    const token = getCookie('token');
+    const json = await req.delete(`/admin/events/${id}`, {
+        headers: { 'Authorization': `Token ${token}` }
+    });
+    return !json.data.error;
 }

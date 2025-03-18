@@ -5,9 +5,13 @@ import { Event } from '../../types/Event';
 import { EventItem, EventItemNotFound, EventItemPlaceholder } from './events/EventItem';
 import { ItemButton } from './itemButton';
 import { FaPlus } from 'react-icons/fa';
+import { ModalScreen } from '../../types/ModalScreens';
+import { Modal } from './modal';
+
 export const AdminPage = () => {
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
+    const [modalScreen, setModalScreen] = useState<ModalScreen>(null);
 
     const loadingEvents = async () => {
         setLoading(true);
@@ -20,7 +24,7 @@ export const AdminPage = () => {
         } finally {
             setLoading(false);
         }
-    }  
+    }
 
     useEffect(() => {
         loadingEvents();
@@ -31,28 +35,33 @@ export const AdminPage = () => {
         <div>
             <div className="flex p-3 items-center">
                 <h1 className="text-2xl flex-1 font-bold">Eventos</h1>
-                <ItemButton 
+                <ItemButton
                     IconElement={FaPlus}
-                    onClick={() => {}}
+                    onClick={() => setModalScreen ('add')}
                 />
             </div>
-            <div className="my-3"> 
-                {!loading && events.length > 0 && events.map(item =>(
+            <div className="my-3">
+                {!loading && events.length > 0 && events.map(item => (
                     <EventItem
                         key={item.id}
                         item={item}
                         refreshAction={loadingEvents}
-                        openModal={() => {}}
+                        openModal={() => { }}
                     />
                 ))}
                 {!loading && events.length === 0 && <EventItemNotFound />}
-                {loading && 
-                <>
-                    <EventItemPlaceholder />
-                    <EventItemPlaceholder />
-                    <EventItemPlaceholder />
-                </>}
+                {loading &&
+                    <>
+                        <EventItemPlaceholder />
+                        <EventItemPlaceholder />
+                        <EventItemPlaceholder />
+                    </>}
             </div>
-        </div>  
+            {modalScreen &&
+                <Modal onClose={() => setModalScreen(null)}>
+                    tipo: {modalScreen}
+                </Modal>        
+            }
+        </div>
     )
 }

@@ -7,6 +7,9 @@ const port = 3001;
 // Middleware para processar JSON
 app.use(express.json());
 
+
+
+
 // Rota básica
 app.get('/', (req: Request, res: Response) => {
   res.json( {
@@ -175,6 +178,7 @@ app.get('/rafael', (req: Request, res: Response) => {
     ]
   } );
 });
+
 
 app.get('/admin', (req: Request, res: Response) => {
   res.json({
