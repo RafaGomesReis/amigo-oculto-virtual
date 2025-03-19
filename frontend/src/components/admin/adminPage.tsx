@@ -7,6 +7,7 @@ import { ItemButton } from './itemButton';
 import { FaPlus } from 'react-icons/fa';
 import { ModalScreen } from '../../types/ModalScreens';
 import { Modal } from './modal';
+import { EventAdd } from './events/EventAdd';
 
 export const AdminPage = () => {
     const [events, setEvents] = useState<Event[]>([]);
@@ -14,6 +15,7 @@ export const AdminPage = () => {
     const [modalScreen, setModalScreen] = useState<ModalScreen>(null);
 
     const loadingEvents = async () => {
+        setModalScreen(null);
         setLoading(true);
         try {
             const response = await fetch('/api/events');
@@ -59,7 +61,7 @@ export const AdminPage = () => {
             </div>
             {modalScreen &&
                 <Modal onClose={() => setModalScreen(null)}>
-                    tipo: {modalScreen}
+                    {modalScreen === 'add' && <EventAdd refreshAction={loadingEvents} />}
                 </Modal>        
             }
         </div>
